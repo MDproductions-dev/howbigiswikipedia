@@ -502,19 +502,22 @@
     request.open('GET', 'https://hbiwbackend.herokuapp.com/howbig.txt', true);
     request.send(null);
     request.onreadystatechange = function () {
-        if (request.readyState === 4 && request.status === 200) {
-            var type = request.getResponseHeader('Content-Type');
+        if (request.readyState === 4) {
+	if (request.status === 200) {
+	var type = request.getResponseHeader('Content-Type');
             if (type.indexOf("text") !== 1) {
-                size = request.responseText              
-                bytesToSize(size)
-                localStorage.setItem('size', size)
-                localStorage.setItem('date', new Date())
-	          }
-            }
-        }
+            size = request.responseText              
+            bytesToSize(size)
+            localStorage.setItem('size', size)
+            localStorage.setItem('date', new Date())
+	}
+
+	  }
 	else {
           document.getElementById("laden").setAttribute("style" , "display:none;")
           document.getElementById("error").setAttribute("style" , "")
+        }    
+            }
         }
     }
     else{
