@@ -496,7 +496,10 @@
 
 
 <script>
-document.getElementById("error").setAttribute("style" , "display:none;")
+window.onerror = function error(){
+    document.getElementById("laden").setAttribute("style" , "display:none;")
+    document.getElementById("error").setAttribute("style" , "")
+}
     var size; 
     if (localStorage.getItem('date') === undefined || Math.ceil(Math.abs(new Date(localStorage.getItem('date')) - new Date ()) / (1000 * 60 * 60 * 24)) > 1){
     var request = new XMLHttpRequest();
@@ -512,10 +515,6 @@ document.getElementById("error").setAttribute("style" , "display:none;")
                 localStorage.setItem('date', new Date())
 	          }
             }
-	else {
-          document.getElementById("laden").setAttribute("style" , "display:none;")
-          document.getElementById("error").setAttribute("style" , "")
-        }
         }
     }
     else{
